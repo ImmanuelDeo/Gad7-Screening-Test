@@ -1,33 +1,193 @@
-body {
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #f0f8ff;
+}
+
+body {
+    background-color: #f4f9ff;
     color: #333;
+    line-height: 1.5;
+}
+
+.intro-section img {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-width: 50%;
+    height: auto;
+}
+
+
+.layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 100vh;
     padding: 20px;
+    gap: 20px;
 }
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 30px;
+
+/* SIDEBAR KIRI (Deskripsi) */
+.sidebar {
+    width: 25%;
+    background-color: #fefefe;
+    padding: 30px 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
-h1 { color: #4a90e2; }
+
+.sidebar h2 {
+    color: #2e74d6;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    margin-bottom: 15px;
+}
+
+.sidebar li {
+    margin-left: 20px;
+    margin-bottom: 8px;
+}
+
+.sidebar p {
+    font-size: 14px;
+    color: #555;
+}
+
+.sidebar img {
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+/* KONTEN TENGAH */
+.main-content {
+    width: 50%;
+    background-color: #fff;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.07);
+}
+
+/* Branding KANAN */
+.branding {
+    width: 25%;
+    background-color: #fefefe;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.branding img {
+    max-width: 120px;
+    margin-bottom: 10px;
+}
+
+/* INTRO Section */
+.intro-section,
+.quiz-section {
+    display: none;
+}
+
+.intro-section.active,
+.quiz-section.active {
+    display: block;
+}
+
+.intro-section h1 {
+    font-size: 1.5rem;
+    color: #2e74d6;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.intro-section p {
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.intro-section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.intro-section li {
+    margin-bottom: 10px;
+}
+
+/* FORM */
 form > div {
     margin-bottom: 20px;
 }
-label { display: block; margin-bottom: 8px; }
-input[type="radio"] { margin-right: 10px; }
-button {
-    background: #4a90e2;
-    color: white;
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+button,
+.start-btn {
+    background-color: #2e74d6;
+    color: #fff;
     border: none;
     padding: 12px 20px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    transition: background 0.3s ease;
 }
+
+button:hover {
+    background-color: #1c54a0;
+}
+
+/* HASIL TES */
 #result {
-    margin-top: 30px;
-    font-size: 18px;
+    margin-top: 20px;
     font-weight: bold;
+    text-align: center;
+}
+
+.note {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .layout {
+    flex-direction: column;
+    }
+
+    .sidebar,
+    .branding {
+    display: none;
+    }
+
+    .main-content {
+    width: 100%;
+    }
+
+    .intro-section h1 {
+    font-size: 1.3rem;
+    }
+
+    .start-btn {
+    width: 100%;
+    }
 }

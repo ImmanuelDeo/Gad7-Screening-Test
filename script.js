@@ -20,17 +20,18 @@ window.onload = () => {
     questions.forEach((q, index) => {
     const qDiv = document.createElement("div");
     qDiv.innerHTML = `<label>${index + 1}. ${q}</label>`;
-    options.forEach((opt, i) => {
+    options.forEach((opt) => {
         qDiv.innerHTML += `
-        <label>
-            <input type="radio" name="q${index}" value="${opt.value}" required />
-            ${opt.text}
-        </label>
-        `;
+        <label><input type="radio" name="q${index}" value="${opt.value}" required /> ${opt.text}</label>`;
     });
     form.appendChild(qDiv);
     });
 };
+
+function startQuiz() {
+    document.querySelector(".intro-section").classList.remove("active");
+    document.querySelector(".quiz-section").classList.add("active");
+}
 
 function calculateScore() {
     let total = 0;
@@ -47,5 +48,5 @@ function calculateScore() {
 
     document.getElementById("result").innerHTML =
     `✅ Skormu: ${total}<br>📊 ${hasil}<br><br>
-    ⚠️ Ini bukan diagnosis. Jika merasa terganggu, pertimbangkan untuk berkonsultasi ke psikolog atau konselor.`;
+    ⚠️ Ini bukan diagnosis medis. Jika kamu merasa terganggu, segera konsultasikan dengan profesional.`;
 }
