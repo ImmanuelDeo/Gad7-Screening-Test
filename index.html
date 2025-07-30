@@ -2,64 +2,37 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deteksi Awal Kecemasan (GAD-7)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Deteksi Kecemasan GAD-7</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="layout">
-    <!-- Sidebar Deskripsi -->
-    <div class="sidebar">
-    <h2>Tes Gangguan Kecemasan</h2>
-    <ul>
+    <div class="wrapper">
+    <!-- Bagian Splash + Deskripsi -->
+    <div class="card" id="intro-section">
+        <img src="ilustrasi-depresi.png" alt="Ilustrasi Depresi" class="illustration" />
+        <h1>Merasa khawatir atau takut berlebihan?</h1>
+        <p>Bedakan kekhawatiran biasa dengan gangguan kecemasan. Gangguan ini lebih mudah diatasi jika ditemukan sejak dini.</p>
+
+        <h2>Tes Gangguan Kecemasan (GAD-7)</h2>
+        <ul>
         <li>✅ Tes singkat dan valid secara ilmiah</li>
         <li>✅ Terdiri dari 7 pertanyaan skala 0–3</li>
         <li>✅ Skor kamu bersifat rahasia</li>
-    </ul>
-    <p>Catatan: GAD-7 tidak menggantikan diagnosis klinis. Konsultasikan ke profesional jika perlu.</p>
+        </ul>
+        <p class="note"><strong>Catatan:</strong> GAD-7 tidak menggantikan diagnosis klinis. Konsultasikan ke profesional jika perlu.</p>
+
+        <button onclick="startQuiz()">Ambil Tes</button>
     </div>
 
-    <!-- Konten Tengah (Intro & Quiz) -->
-    <div class="main-content">
-    <!-- Intro -->
-    <div class="intro-section active">
-        <div class="mobile-description">
-        <h2>Tes Gangguan Kecemasan</h2>
-        <ul>
-            <li>✅ Tes singkat dan valid secara ilmiah</li>
-            <li>✅ Terdiri dari 7 pertanyaan skala 0–3</li>
-            <li>✅ Skor kamu bersifat rahasia</li>
-        </ul>
-        <p><strong>Catatan:</strong> GAD-7 tidak menggantikan diagnosis klinis. Konsultasikan ke profesional jika perlu.</p>
-        </div>
-        <img src="ilustrasi-depresi.png" alt="Ilustrasi Depresi" />
-        <h1>Merasa khawatir atau takut berlebihan?</h1>
-        <p>Bedakan kekhawatiran biasa dengan gangguan kecemasan. Gangguan ini lebih mudah diatasi jika ditemukan sejak dini.</p>
-        <ul>
-        <li>✅ Tes singkat dan valid secara ilmiah</li>
-        <li>✅ Skor kamu bersifat rahasia</li>
-        </ul>
-        <button class="start-btn" onclick="startQuiz()">Ambil Tes</button>
-    </div>
-
-    <!-- Quiz -->
-    <div class="quiz-section">
-        <h2>Skrining GAD-7</h2>
+    <!-- Bagian Kuesioner -->
+    <div class="card" id="quiz-section" style="display: none;">
+        <h2>Screening GAD-7</h2>
         <form id="quizForm"></form>
         <button onclick="calculateScore()">Lihat Hasil</button>
         <div id="result"></div>
-        <div class="note">
-        <strong>Catatan:</strong> Ini adalah tes skrining, bukan diagnosis final.
-        </div>
     </div>
     </div>
-
-    <!-- Branding Kanan -->
-    <div class="branding">
-    <img src="logo-tel-u.png" alt="Logo Tim" style="max-width: 120px; margin-bottom: 10px;" />
-    <p><strong>Tim:</strong><br>Tim Kesehatan Mental Muda</p>
-    </div>
-</div>
 
     <script src="script.js"></script>
 </body>
