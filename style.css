@@ -115,16 +115,36 @@ input[type="radio"] {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .illustration {
-        max-width: 80%;
+@media (max-width: 600px) {
+    .question-text {
+        font-size: 1rem;
+        text-align: left;
     }
 
-    .card {
-        padding: 20px;
+    .options-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .option-label {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .card, .main-wrapper {
+        padding: 15px;
+        box-sizing: border-box;
     }
 
     button {
         width: 100%;
+        font-size: 1rem;
+    }
+
+    form {
+        width: 100%;
     }
 }
+
