@@ -1,32 +1,3 @@
-function startQuiz() {
-    document.getElementById('intro-section').style.display = 'none';
-    document.getElementById('quiz-section').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function calculateScore() {
-    const answers = document.querySelectorAll('input[type="radio"]:checked');
-    let score = 0;
-    answers.forEach((ans) => {
-        score += parseInt(ans.value);
-    });
-
-    let resultText = "Skor kamu: " + score + "<br>";
-
-    if (score <= 4) {
-        resultText += "✅ Kecemasan minimal.";
-    } else if (score <= 9) {
-        resultText += "🟡 Kecemasan ringan.";
-    } else if (score <= 14) {
-        resultText += "🟠 Kecemasan sedang.";
-    } else {
-        resultText += "🔴 Kecemasan berat. Sebaiknya konsultasikan ke tenaga profesional.";
-    }
-
-    document.getElementById("result").innerHTML = resultText;
-}
-
-// Pertanyaan GAD-7
 const questions = [
     "Merasa gugup, cemas, atau sangat tegang?",
     "Tidak bisa menghentikan rasa khawatir?",
@@ -37,20 +8,96 @@ const questions = [
     "Merasa takut seakan sesuatu yang buruk akan terjadi?"
 ];
 
-const quizForm = document.getElementById("quizForm");
+const messages = {
+    minimal: [
+    "Kamu dalam kondisi mental yang sehat. Terus jaga keseimbangan dirimu!",
+    "Tenang dan terkendali—itu kamu! Lanjutkan kebiasaan positifmu 💪",
+    "Kamu sudah melakukan pekerjaan yang luar biasa dalam merawat dirimu. Proud of you!"
+    ],
+    ringan: [
+    "Kamu gak sendiri. Sedikit cemas itu wajar. Terus semangat ya ✨",
+    "Semangat terus! Jangan ragu untuk ngobrol sama orang terdekat.",
+    "Kamu cukup kuat untuk menghadapi ini. Pelan-pelan aja 🌈"
+    ],
+    sedang: [
+    "Kamu udah hebat bisa sampai sini 💙 Ayo cari support yang kamu butuh.",
+    "Healing itu proses. Tapi kamu sedang bergerak ke arah yang lebih baik 🌷",
+    "Kamu layak mendapatkan kedamaian, satu langkah kecil setiap hari."
+    ],
+    berat: [
+    "Kamu sedang berada di masa sulit, dan itu valid. Tapi kamu berharga ❤️",
+    "Gak apa-apa kalau sekarang kamu butuh istirahat 🌧️→☀️",
+    "Yuk, ambil langkah pertamamu menuju pemulihan—pelan tapi pasti 🌻"
+    ]
+};
 
-questions.forEach((question, i) => {
+const splash = document.getElementById("splash");
+const quizForm = document.getElementById("quizForm");
+const questionList = document.getElementById("questionList");
+const resultPage = document.getElementById("resultPage");
+const scoreEl = document.getElementById("score");
+const levelEl = document.getElementById("level");
+const messageEl = document.getElementById("message");
+
+function startTest() {
+    splash.style.display = "none";
+    quizForm.style.display = "block";
+}
+
+function getRandomMessage(level) {
+    const arr = messages[level];
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function renderQuestions() {
+    questions.forEach((q, i) => {
     const div = document.createElement("div");
-    div.classList.add("question");
     div.innerHTML = `
-    <p>${i + 1}. ${question}</p>
-    <div class="options">
-        <label><input type="radio" name="q${i}" value="0" required> Tidak sama sekali</label>
+        <p class="question">${i + 1}. ${q}</p>
+        <div class="options">
+        <label><input type="radio" name="q${i}" value="0"> Tidak sama sekali</label>
         <label><input type="radio" name="q${i}" value="1"> Beberapa hari</label>
         <label><input type="radio" name="q${i}" value="2"> Lebih dari separuh hari</label>
         <label><input type="radio" name="q${i}" value="3"> Hampir setiap hari</label>
-    </div>
-`;
+        </div>
+    `;
+    questionList.appendChild(div);
+    });
+}
 
-    quizForm.appendChild(div);
+function getCategory(score) {
+    if (score <= 4) return "minimal";
+    if (score <= 9) return "ringan";
+    if (score <= 14) return "sedang";
+    return "berat";
+}
+
+quizForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let total = 0;
+    let valid = true;
+
+    for (let i = 0; i < questions.length; i++) {
+    const val = document.querySelector(`input[name=q${i}]:checked`);
+    if (val) {
+        total += parseInt(val.value);
+    } else {
+        valid = false;
+        break;
+    }
+    }
+
+    if (!valid) {
+    alert("Mohon isi semua pertanyaan dulu ya 🙏");
+    return;
+    }
+
+    const category = getCategory(total);
+    quizForm.style.display = "none";
+    resultPage.style.display = "block";
+    scoreEl.textContent = `Skor kamu: ${total}`;
+    levelEl.textContent = `Tingkat kecemasan: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    messageEl.textContent = getRandomMessage(category);
 });
+
+renderQuestions();

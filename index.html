@@ -2,39 +2,54 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Deteksi Kecemasan GAD-7</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screening GAD-7</title>
+    <!-- Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- Link ke file CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="wrapper">
-    <!-- Bagian Splash + Deskripsi --> 
-    <div class="card" id="intro-section">
-        <img src="ilustrasi-depresi.png" alt="Ilustrasi Depresi" class="illustration" />
+    <div class="container">
+    <!-- Splash Screen -->
+    <div class="section" id="splash">
+        <img src="ilustrasi-depresi.png" alt="Ilustrasi Depresi" />
+
+        <div class="splash-text-left">
         <h1>Tes Gangguan Kecemasan (GAD-7)</h1>
-        <p>Bedakan kekhawatiran biasa dengan gangguan kecemasan. Gangguan ini lebih mudah diatasi jika ditemukan sejak dini.
-            Melalui bantuan metode screening test GAD-7, kamu bisa mengetahui lebih dini indikasi apakah kamu mengalami gangguan 
-            kecemasan atau tidak.
+        <p>Bedakan kekhawatiran biasa dengan gangguan kecemasan. Gangguan ini lebih mudah diatasi jika ditemukan sejak dini.</p>
+        <p>
+            ✅ Tes singkat dan valid sesuai metode GAD-7<br />
+            ✅ Terdiri dari 7 pertanyaan dengan sakala relevan 0–3<br />
+            ✅ Skor kamu bersifat rahasia dan tidak akan disimpan<br />
+            ✅ Hasil tes ini bukan diagnosis medis, hanya untuk referensi pribadi<br />
         </p>
-        <ul>
-        <li>✅ Tes singkat dan valid</li>
-        <li>✅ Terdiri dari 7 pertanyaan skala 0–3 dengan hasil indikasi beberapa tingkat kecemasan</li>
-        <li>✅ Skor kamu bersifat rahasia</li>
-        </ul>
-        <p class="note"><strong>Catatan:</strong> GAD-7 tidak menggantikan diagnosis klinis. Konsultasikan ke profesional jika perlu.</p>
-
-        <button onclick="startQuiz()">Ambil Tes</button>
+        </div>
+        <div class="center-splash-btn">
+            <button class="start-btn" onclick="startTest()">Mulai Tes</button>
+            <p class="copyright">Tes ini dibuat oleh tim Kos Dinar Telkom University Purwokerto</p>
+        </div>
     </div>
 
-    <!-- Bagian Kuesioner -->
-    <div class="card" id="quiz-section" style="display: none;">
+    <!-- Section Pertanyaan -->
+    <form id="quizForm" class="question-section section">
         <h2>Screening GAD-7</h2>
-        <form id="quizForm"></form>
-        <button onclick="calculateScore()">Lihat Hasil</button>
-        <div id="result"></div>
+        <div id="questionList"></div>
+        <br />
+        <button class="start-btn" type="submit">Lihat Hasil</button>
+    </form>
+
+    <!-- Section Hasil -->
+    <div class="result-page section" id="resultPage">
+        <img src="encourage.png" alt="Hasil Tes" />
+        <h2>Hasil Tes Kecemasan Kamu</h2>
+        <p id="score"></p>
+        <p id="level"></p>
+        <p id="message"></p>
     </div>
     </div>
 
+    <!-- Link ke file JS -->
     <script src="script.js"></script>
 </body>
 </html>
